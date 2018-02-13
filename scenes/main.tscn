@@ -1,8 +1,17 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://scripts/menus.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 [ext_resource path="res://fonts/Androgyne_TB.fnt" type="BitmapFont" id=3]
+
+[sub_resource type="ImageTexture" id=1]
+
+resource/name = "bt_normal"
+flags = 7
+image = Image()
+size = Vector2( 360, 50 )
+storage = 0
+lossy_quality = 0.7
 
 [node name="Main" type="Node"]
 
@@ -32,5 +41,40 @@ text = "Godot Library"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+
+[node name="Button_01" type="TouchScreenButton" parent="."]
+
+transform/pos = Vector2( 180, 300 )
+normal = SubResource( 1 )
+pressed = null
+bitmask = null
+shape = null
+shape_centered = true
+shape_visible = true
+passby_press = false
+action = ""
+visibility_mode = 0
+
+[node name="Label" type="Label" parent="Button_01"]
+
+anchor/left = 3
+anchor/top = 3
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 71.0
+margin/top = 20.0
+margin/right = 252.0
+margin/bottom = 45.0
+custom_fonts/font = ExtResource( 3 )
+text = "Cursores"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[connection signal="pressed" from="Button_01" to="." method="irCena" binds= [ "cursores" ]]
 
 

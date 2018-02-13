@@ -1,0 +1,136 @@
+[gd_scene load_steps=6 format=1]
+
+[ext_resource path="res://scripts/menus.gd" type="Script" id=1]
+[ext_resource path="res://fonts/Androgyne_TB.fnt" type="BitmapFont" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://sprites/house.png" type="Texture" id=4]
+
+[sub_resource type="ImageTexture" id=1]
+
+resource/name = "bt_normal"
+flags = 7
+image = Image()
+size = Vector2( 360, 50 )
+storage = 0
+lossy_quality = 0.7
+
+[node name="Menu" type="Node"]
+
+script/script = ExtResource( 1 )
+
+[node name="Button_1" type="TouchScreenButton" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 180, 300 )
+normal = SubResource( 1 )
+pressed = null
+bitmask = null
+shape = null
+shape_centered = true
+shape_visible = true
+passby_press = false
+action = ""
+visibility_mode = 0
+
+[node name="Label" type="Label" parent="Button_1"]
+
+anchor/left = 3
+anchor/top = 3
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 114.0
+margin/top = 20.0
+margin/right = 295.0
+margin/bottom = 45.0
+custom_fonts/font = ExtResource( 2 )
+text = "Cursor Global"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Button_2" type="TouchScreenButton" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 180, 400 )
+normal = SubResource( 1 )
+pressed = null
+bitmask = null
+shape = null
+shape_centered = true
+shape_visible = true
+passby_press = false
+action = ""
+visibility_mode = 0
+
+[node name="Label" type="Label" parent="Button_2"]
+
+anchor/left = 3
+anchor/top = 3
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 114.0
+margin/top = 20.0
+margin/right = 295.0
+margin/bottom = 45.0
+custom_fonts/font = ExtResource( 2 )
+text = "Cursor Local"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Head" type="Node2D" parent="."]
+
+editor/display_folded = true
+
+[node name="Logo" type="Sprite" parent="Head"]
+
+transform/pos = Vector2( 86.123, 79.9713 )
+transform/scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="Head"]
+
+rect/scale = Vector2( 2, 2 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 202.0
+margin/top = 38.0
+margin/right = 429.0
+margin/bottom = 78.0
+custom_fonts/font = ExtResource( 2 )
+text = "Cursores"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="BtHome" type="TouchScreenButton" parent="."]
+
+transform/pos = Vector2( 549.786, 1147.29 )
+transform/scale = Vector2( 0.5, 0.5 )
+normal = ExtResource( 4 )
+pressed = null
+bitmask = null
+shape = null
+shape_centered = true
+shape_visible = true
+passby_press = false
+action = ""
+visibility_mode = 0
+
+[connection signal="pressed" from="Button_1" to="." method="irCena" binds= [ "cursor-global-local/cursor_global" ]]
+
+[connection signal="pressed" from="Button_2" to="." method="irCena" binds= [ "cursor-global-local/cursor_local" ]]
+
+[connection signal="pressed" from="BtHome" to="." method="_on_BtHome_pressed"]
+
+

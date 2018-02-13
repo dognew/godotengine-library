@@ -1,0 +1,98 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://fonts/Androgyne_TB.fnt" type="BitmapFont" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 10 )
+
+[sub_resource type="GDScript" id=2]
+
+script/source = "extends Area2D
+
+onready var sprite = get_node(\"sprite\")
+onready var collision = get_node(\"collision\")
+onready var label = get_node(\"label\")
+
+export var coord_type = \"global\" # global ou local
+
+var largura
+var altura
+var textura
+var posicao
+
+func _ready():
+	checar()
+	set_process_input(true)
+	
+func checar():
+	textura = sprite.get_texture()
+	if textura == null:
+		print(\"Defina uma textura primeiro\")
+		label.set_text(\"NULL\")
+		label.show()
+		largura = label.get_size().width / 2
+		altura = label.get_size().height / 2
+	else:
+		largura = sprite.get_texture().get_width() / 2
+		altura = sprite.get_texture().get_height() / 2
+	collision.get_shape().set_extents(Vector2(largura, altura))
+
+func _input(event):
+	if coord_type == \"global\":
+		posicao = get_viewport().get_mouse_pos()
+		get_node(\".\").set_pos(Vector2(posicao))
+	elif coord_type == \"local\":
+		print(\"Codigo local ainda não funciona. Sorry!\")
+		label.set_text(\"Codigo local ainda não funciona. Sorry!\")
+		label.show()
+		#posicao = get_node(\"..\").get_local_mouse_pos()
+	else:
+		print(\"Erro. coord_type valor inválido, defina como global ou local\")
+	if posicao != null:
+		print(coord_type)
+		get_node(\".\").set_pos(Vector2(posicao))
+"
+
+[node name="cursor" type="Area2D"]
+
+transform/pos = Vector2( 344.74, 449.111 )
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = SubResource( 2 )
+coord_type = "global"
+
+[node name="sprite" type="Sprite" parent="."]
+
+[node name="collision" type="CollisionShape2D" parent="."]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="label" type="Label" parent="."]
+
+visibility/visible = false
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 106.0
+margin/bottom = 31.0
+custom_fonts/font = ExtResource( 1 )
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+

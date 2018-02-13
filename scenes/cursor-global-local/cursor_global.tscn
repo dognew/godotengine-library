@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://scripts/menus.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -6,6 +6,15 @@
 [ext_resource path="res://scenes/cursor-global-local/cursor.tscn" type="PackedScene" id=4]
 [ext_resource path="res://sprites/hand4_height100px.png" type="Texture" id=5]
 [ext_resource path="res://sprites/house.png" type="Texture" id=6]
+
+[sub_resource type="ImageTexture" id=2]
+
+resource/name = "bt_normal"
+flags = 7
+image = Image()
+size = Vector2( 360, 50 )
+storage = 0
+lossy_quality = 0.7
 
 [node name="Main" type="Node"]
 
@@ -57,7 +66,7 @@ size_flags/vertical = 2
 margin/left = 20.0
 margin/top = 173.0
 margin/right = 912.0
-margin/bottom = 661.0
+margin/bottom = 743.0
 custom_fonts/normal_font = ExtResource( 3 )
 custom_colors/default_color = Color( 1, 1, 1, 1 )
 bbcode/enabled = true
@@ -85,7 +94,42 @@ passby_press = false
 action = ""
 visibility_mode = 0
 
+[node name="Button_1" type="TouchScreenButton" parent="."]
+
+transform/pos = Vector2( 61.267, 1182.75 )
+normal = SubResource( 2 )
+pressed = null
+bitmask = null
+shape = null
+shape_centered = true
+shape_visible = true
+passby_press = false
+action = ""
+visibility_mode = 0
+
+[node name="Label" type="Label" parent="Button_1"]
+
+anchor/left = 3
+anchor/top = 3
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 114.0
+margin/top = 20.0
+margin/right = 295.0
+margin/bottom = 45.0
+custom_fonts/font = ExtResource( 3 )
+text = "Documentação"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
 [connection signal="pressed" from="BtHome" to="." method="_on_BtHome_pressed"]
+
+[connection signal="pressed" from="Button_1" to="." method="irCena" binds= [ "cursor-global-local/documentacao" ]]
 
 
 [editable path="cursor"]

@@ -1,0 +1,16 @@
+# Godot files
+*.import
+export.cfg
+engine.cfg
+project.godot
+
+# Built application files
+*.apk
+*.ap_
+
+# Keystore files
+*.jks
+*.keystore
+
+# Google Services (e.g. APIs or Firebase)
+google-services.json
